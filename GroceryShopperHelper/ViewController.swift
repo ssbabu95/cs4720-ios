@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var showName: UILabel!
@@ -48,22 +49,36 @@ class ViewController: UIViewController {
     }
     
     @IBAction func shareAction(sender: AnyObject) {
-        
-        let store = showName.text!;
-        let activityViewController = UIActivityViewController(activityItems: [store as NSString], applicationActivities: nil)
-        
-        presentViewController(activityViewController, animated: true, completion :{})
+        //let email = MFMailComposeViewController()
+        //email.setSubject(showName.text!)
+        //email.mailComposeDelegate = self
+        //self.presentViewController(email, animated: true, completion: {})
+        //let store = showName.text!
+        //let activityViewController = UIActivityViewController(activityItems: [store as NSString], applicationActivities: nil)
+        //presentViewController(activityViewController, animated: true, completion :{})
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        mailComposerVC.setSubject(showName.text!)
+        mailComposerVC.setMessageBody("List will be here!", isHTML: false)
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposerVC, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    
+    func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
         
     }
     func DismissKeyboard(){
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
-    
-
-    
-
 
 }
 
