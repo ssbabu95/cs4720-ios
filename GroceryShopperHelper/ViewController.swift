@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import AVFoundation
 
 class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
@@ -45,7 +46,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
     }
     
     @IBAction func pinchAction(sender: UIPinchGestureRecognizer) {
-        nameText.text = "Bob";
+        nameText.text = "Walmart";
     }
     
     @IBAction func shareAction(sender: AnyObject) {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0779260E1BDFEEC5006610EC /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779260D1BDFEEC5006610EC /* SoundController.swift */; settings = {ASSET_TAGS = (); }; };
+		07805A131BE17672008441D0 /* GrocDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07805A121BE17672008441D0 /* GrocDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		07805A151BE176AD008441D0 /* GrocListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07805A141BE176AD008441D0 /* GrocListViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		07F9F37E1BD29F0F00D7D177 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9F37D1BD29F0F00D7D177 /* AppDelegate.swift */; };
 		07F9F3801BD29F0F00D7D177 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9F37F1BD29F0F00D7D177 /* ViewController.swift */; };
 		07F9F3831BD29F0F00D7D177 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F9F3811BD29F0F00D7D177 /* Main.storyboard */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0779260D1BDFEEC5006610EC /* SoundController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
+		07805A121BE17672008441D0 /* GrocDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrocDetailViewController.swift; sourceTree = "<group>"; };
+		07805A141BE176AD008441D0 /* GrocListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrocListViewController.swift; sourceTree = "<group>"; };
 		07F9F37A1BD29F0F00D7D177 /* GroceryShopperHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroceryShopperHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F9F37D1BD29F0F00D7D177 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07F9F37F1BD29F0F00D7D177 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,9 +63,12 @@
 				07F9F37D1BD29F0F00D7D177 /* AppDelegate.swift */,
 				07F9F37F1BD29F0F00D7D177 /* ViewController.swift */,
 				07F9F3811BD29F0F00D7D177 /* Main.storyboard */,
+				0779260D1BDFEEC5006610EC /* SoundController.swift */,
 				07F9F3841BD29F0F00D7D177 /* Assets.xcassets */,
 				07F9F3861BD29F0F00D7D177 /* LaunchScreen.storyboard */,
 				07F9F3891BD29F0F00D7D177 /* Info.plist */,
+				07805A121BE17672008441D0 /* GrocDetailViewController.swift */,
+				07805A141BE176AD008441D0 /* GrocListViewController.swift */,
 			);
 			path = GroceryShopperHelper;
 			sourceTree = "<group>";
@@ -136,6 +145,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F9F3801BD29F0F00D7D177 /* ViewController.swift in Sources */,
+				07805A151BE176AD008441D0 /* GrocListViewController.swift in Sources */,
+				0779260E1BDFEEC5006610EC /* SoundController.swift in Sources */,
+				07805A131BE17672008441D0 /* GrocDetailViewController.swift in Sources */,
 				07F9F37E1BD29F0F00D7D177 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +304,7 @@
 				07F9F38E1BD29F0F00D7D177 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
