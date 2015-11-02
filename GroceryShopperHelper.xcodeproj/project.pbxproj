@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0708FB9E1BE6ECE5007F4E8C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0708FB9D1BE6ECE5007F4E8C /* MapViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		0779260E1BDFEEC5006610EC /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779260D1BDFEEC5006610EC /* SoundController.swift */; settings = {ASSET_TAGS = (); }; };
 		07805A131BE17672008441D0 /* GrocDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07805A121BE17672008441D0 /* GrocDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		07805A151BE176AD008441D0 /* GrocListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07805A141BE176AD008441D0 /* GrocListViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0708FB9D1BE6ECE5007F4E8C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0779260D1BDFEEC5006610EC /* SoundController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
 		07805A121BE17672008441D0 /* GrocDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrocDetailViewController.swift; sourceTree = "<group>"; };
 		07805A141BE176AD008441D0 /* GrocListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrocListViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				07F9F3891BD29F0F00D7D177 /* Info.plist */,
 				07805A121BE17672008441D0 /* GrocDetailViewController.swift */,
 				07805A141BE176AD008441D0 /* GrocListViewController.swift */,
+				0708FB9D1BE6ECE5007F4E8C /* MapViewController.swift */,
 			);
 			path = GroceryShopperHelper;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F9F3801BD29F0F00D7D177 /* ViewController.swift in Sources */,
+				0708FB9E1BE6ECE5007F4E8C /* MapViewController.swift in Sources */,
 				07805A151BE176AD008441D0 /* GrocListViewController.swift in Sources */,
 				0779260E1BDFEEC5006610EC /* SoundController.swift in Sources */,
 				07805A131BE17672008441D0 /* GrocDetailViewController.swift in Sources */,

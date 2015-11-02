@@ -32,31 +32,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zi0-bP-3CZ">
-                                <rect key="frame" x="113" y="274" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter grocery store's name!" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QJ-Q4-oS1">
-                                <rect key="frame" x="55" y="226" width="213" height="26"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIM-wj-iIX">
-                                <rect key="frame" x="55" y="402" width="213" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uAP-eb-VQq">
-                                <rect key="frame" x="113" y="327" width="97" height="30"/>
-                                <state key="normal" title="Create a List"/>
-                                <connections>
-                                    <action selector="changeName:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nhu-TT-OEo"/>
-                                    <segue destination="8kA-hD-JGs" kind="push" id="2Rq-67-Th4"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7Oh-Ry-BtV">
                                 <rect key="frame" x="113" y="479" width="97" height="30"/>
                                 <state key="normal" title="Mail List"/>
@@ -64,13 +39,41 @@
                                     <action selector="shareAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xet-d4-z0p"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQF-ic-UXn">
+                                <rect key="frame" x="20" y="518" width="280" height="30"/>
+                                <state key="normal" title="Show Nearby Grocery Stores"/>
+                                <connections>
+                                    <segue destination="WKk-Xl-S4T" kind="push" identifier="mapSeg" id="l0C-V8-8Xv"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zi0-bP-3CZ">
+                                <rect key="frame" x="113" y="192" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter grocery store's name!" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QJ-Q4-oS1">
+                                <rect key="frame" x="55" y="144" width="213" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIM-wj-iIX">
+                                <rect key="frame" x="55" y="320" width="213" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uAP-eb-VQq">
+                                <rect key="frame" x="113" y="245" width="97" height="30"/>
+                                <state key="normal" title="Create a List"/>
+                                <connections>
+                                    <action selector="changeName:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nhu-TT-OEo"/>
+                                    <segue destination="8kA-hD-JGs" kind="push" id="2Rq-67-Th4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="RhH-Em-mDm" appends="YES" id="A4u-7J-n2j"/>
-                            <outletCollection property="gestureRecognizers" destination="O6P-OP-HOa" appends="YES" id="6ix-CZ-ob8"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Grocery Shopper" id="zg0-IB-8j2">
                         <barButtonItem key="rightBarButtonItem" title="Audio" id="8os-2T-AXh">
@@ -88,14 +91,36 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <pinchGestureRecognizer id="RhH-Em-mDm">
-                    <connections>
-                        <action selector="pinchAction:" destination="BYZ-38-t0r" id="Cdk-sQ-7Za"/>
-                    </connections>
-                </pinchGestureRecognizer>
-                <tapGestureRecognizer id="O6P-OP-HOa"/>
+                <tapGestureRecognizer id="HLa-c5-gVs"/>
             </objects>
-            <point key="canvasLocation" x="134.93333333333334" y="268.85333333333335"/>
+            <point key="canvasLocation" x="134" y="268"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="iYn-KY-vei">
+            <objects>
+                <viewController id="WKk-Xl-S4T" customClass="MapViewController" customModule="GroceryShopperHelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l4x-i6-d8V"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kdl-XZ-51b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mfv-Xe-Uha">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XRl-5S-sk9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MNS-Op-eAq"/>
+                    <connections>
+                        <outlet property="mapView" destination="XRl-5S-sk9" id="g6s-wK-PQT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SXH-0t-FGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="402" y="945"/>
         </scene>
         <!--Grocery List-->
         <scene sceneID="uMg-Jz-Odc">
