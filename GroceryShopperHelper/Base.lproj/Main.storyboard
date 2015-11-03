@@ -32,83 +32,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7Oh-Ry-BtV">
-                                <rect key="frame" x="253" y="483" width="97" height="30"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQS-HQ-IZ8">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LIh-OF-VhV">
+                                        <rect key="frame" x="252" y="107" width="97" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="cDA-3W-q7d">
+                                        <rect key="frame" x="252" y="508" width="97" height="30"/>
+                                        <state key="normal" title="Mail List"/>
+                                        <connections>
+                                            <action selector="shareAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wfG-SI-Tk5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cj8-wF-VC0">
+                                        <rect key="frame" x="159" y="546" width="280" height="30"/>
+                                        <state key="normal" title="Show Nearby Grocery Stores"/>
+                                        <connections>
+                                            <segue destination="WKk-Xl-S4T" kind="show" identifier="mapSeg" id="J0q-LF-VEC"/>
+                                        </connections>
+                                    </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lSJ-VJ-Z0C">
+                                        <rect key="frame" x="160" y="236" width="280" height="248"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="a8M-fU-1j5">
+                                        <rect key="frame" x="252" y="159" width="97" height="30"/>
+                                        <state key="normal" title="Create a List"/>
+                                        <connections>
+                                            <segue destination="8kA-hD-JGs" kind="show" id="cZ6-2b-rmw"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Enter grocery store's name!" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5QM-d7-ms2">
+                                        <rect key="frame" x="193" y="73" width="213" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1zP-Ho-3Bs"/>
-                                    <constraint firstAttribute="width" constant="97" id="aYn-72-MdG"/>
+                                    <constraint firstItem="Cj8-wF-VC0" firstAttribute="centerX" secondItem="dQS-HQ-IZ8" secondAttribute="centerX" id="Hs4-QM-XEY"/>
+                                    <constraint firstItem="LIh-OF-VhV" firstAttribute="centerX" secondItem="dQS-HQ-IZ8" secondAttribute="centerX" id="Le6-2v-RLz"/>
+                                    <constraint firstItem="lSJ-VJ-Z0C" firstAttribute="centerX" secondItem="dQS-HQ-IZ8" secondAttribute="centerX" id="Pbb-e5-Ivn"/>
+                                    <constraint firstItem="a8M-fU-1j5" firstAttribute="centerX" secondItem="dQS-HQ-IZ8" secondAttribute="centerX" id="S7J-HN-Cdt"/>
+                                    <constraint firstItem="5QM-d7-ms2" firstAttribute="centerX" secondItem="dQS-HQ-IZ8" secondAttribute="centerX" id="e96-dc-c3Z"/>
+                                    <constraint firstItem="cDA-3W-q7d" firstAttribute="centerX" secondItem="dQS-HQ-IZ8" secondAttribute="centerX" id="tWX-P4-9ra"/>
                                 </constraints>
-                                <state key="normal" title="Mail List"/>
-                                <connections>
-                                    <action selector="shareAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xet-d4-z0p"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQF-ic-UXn">
-                                <rect key="frame" x="160" y="522" width="280" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="bcw-sJ-E8e"/>
-                                    <constraint firstAttribute="height" constant="30" id="iTA-r1-fVX"/>
-                                </constraints>
-                                <state key="normal" title="Show Nearby Grocery Stores"/>
-                                <connections>
-                                    <segue destination="WKk-Xl-S4T" kind="show" identifier="mapSeg" id="l0C-V8-8Xv"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zi0-bP-3CZ">
-                                <rect key="frame" x="253" y="136" width="97" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Jxl-QA-Ioh"/>
-                                    <constraint firstAttribute="width" constant="97" id="TI9-5f-ZSc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enter grocery store's name!" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QJ-Q4-oS1">
-                                <rect key="frame" x="195" y="88" width="213" height="26"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="II8-Wc-Gq9"/>
-                                    <constraint firstAttribute="width" constant="213" id="Qm6-r7-gEH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uAP-eb-VQq">
-                                <rect key="frame" x="253" y="189" width="97" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="6ei-V8-EE0"/>
-                                    <constraint firstAttribute="height" constant="30" id="qr2-rv-Pvt"/>
-                                </constraints>
-                                <state key="normal" title="Create a List"/>
-                                <connections>
-                                    <action selector="changeName:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nhu-TT-OEo"/>
-                                    <segue destination="8kA-hD-JGs" kind="show" id="2Rq-67-Th4"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cev-qa-4bW">
-                                <rect key="frame" x="160" y="227" width="280" height="248"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="248" id="Kp7-cf-Zwn"/>
-                                    <constraint firstAttribute="width" constant="280" id="xzM-2c-OTu"/>
-                                </constraints>
-                            </tableView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="7QJ-Q4-oS1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0Ch-cU-ifV"/>
-                            <constraint firstItem="7QJ-Q4-oS1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-199" id="61v-qE-ocH"/>
-                            <constraint firstItem="uAP-eb-VQq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8gR-fc-bey"/>
-                            <constraint firstItem="uAP-eb-VQq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-96" id="E3a-xq-Etr"/>
-                            <constraint firstItem="uQF-ic-UXn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EzP-rN-db2"/>
-                            <constraint firstItem="cev-qa-4bW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="51" id="HGH-hi-7HH"/>
-                            <constraint firstItem="uQF-ic-UXn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="237" id="Kdz-dR-tAt"/>
-                            <constraint firstItem="Zi0-bP-3CZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-149" id="aaU-EB-S1Y"/>
-                            <constraint firstItem="7Oh-Ry-BtV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="198" id="m4X-5R-Zvz"/>
-                            <constraint firstItem="7Oh-Ry-BtV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ra3-IT-xhl"/>
-                            <constraint firstItem="cev-qa-4bW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sST-Ql-AeE"/>
-                            <constraint firstItem="Zi0-bP-3CZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zDB-V7-sFf"/>
+                            <constraint firstItem="dQS-HQ-IZ8" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="PDy-Z3-hL3"/>
+                            <constraint firstItem="dQS-HQ-IZ8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yby-Hy-qvd"/>
+                            <constraint firstItem="dQS-HQ-IZ8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zpC-tC-uXl"/>
+                            <constraint firstItem="dQS-HQ-IZ8" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="zsT-2y-IxL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Grocery Shopper" id="zg0-IB-8j2">
@@ -119,10 +99,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="createButton" destination="uAP-eb-VQq" id="oGe-eE-EiB"/>
-                        <outlet property="nameText" destination="Zi0-bP-3CZ" id="4vp-cZ-eeZ"/>
-                        <outlet property="promptTitle" destination="7QJ-Q4-oS1" id="vnX-88-0r9"/>
-                        <outlet property="shareButton" destination="7Oh-Ry-BtV" id="rJ7-sD-xzW"/>
+                        <outlet property="createButton" destination="a8M-fU-1j5" id="zE2-Eu-Sis"/>
+                        <outlet property="nameText" destination="LIh-OF-VhV" id="crL-WV-P2t"/>
+                        <outlet property="promptTitle" destination="5QM-d7-ms2" id="RU3-X3-ca2"/>
+                        <outlet property="scrollView" destination="dQS-HQ-IZ8" id="xPB-ef-BVu"/>
+                        <outlet property="shareButton" destination="cDA-3W-q7d" id="gpR-uR-3YJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -142,11 +123,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XRl-5S-sk9">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XRl-5S-sk9">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XRl-5S-sk9" firstAttribute="centerX" secondItem="Mfv-Xe-Uha" secondAttribute="centerX" id="860-B2-S33"/>
+                            <constraint firstItem="XRl-5S-sk9" firstAttribute="centerY" secondItem="Mfv-Xe-Uha" secondAttribute="centerY" id="O1h-4K-FrP"/>
+                            <constraint firstItem="XRl-5S-sk9" firstAttribute="height" secondItem="Mfv-Xe-Uha" secondAttribute="height" id="O3v-K8-Y4E"/>
+                            <constraint firstItem="XRl-5S-sk9" firstAttribute="width" secondItem="Mfv-Xe-Uha" secondAttribute="width" id="t7A-7p-PSk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MNS-Op-eAq"/>
                     <connections>
@@ -204,7 +191,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxf-PJ-HBp">
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxf-PJ-HBp">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Add Item" id="Fzf-JC-zQF">
@@ -229,8 +216,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KK9-IC-bte" firstAttribute="centerY" secondItem="ZtY-aI-VrI" secondAttribute="centerY" id="3qO-Pe-omb"/>
-                            <constraint firstItem="KK9-IC-bte" firstAttribute="centerX" secondItem="ZtY-aI-VrI" secondAttribute="centerX" id="CJU-OS-GEQ"/>
+                            <constraint firstItem="KK9-IC-bte" firstAttribute="width" secondItem="ZtY-aI-VrI" secondAttribute="width" id="Eyc-Fx-K3i"/>
+                            <constraint firstItem="KK9-IC-bte" firstAttribute="centerX" secondItem="ZtY-aI-VrI" secondAttribute="centerX" id="Imb-ZR-Ag5"/>
+                            <constraint firstItem="mxf-PJ-HBp" firstAttribute="width" secondItem="ZtY-aI-VrI" secondAttribute="width" id="MJF-Yk-XtO"/>
+                            <constraint firstItem="mxf-PJ-HBp" firstAttribute="centerX" secondItem="ZtY-aI-VrI" secondAttribute="centerX" id="lJv-EE-zS7"/>
+                            <constraint firstItem="KK9-IC-bte" firstAttribute="centerY" secondItem="ZtY-aI-VrI" secondAttribute="centerY" id="xwa-i3-TLo"/>
                         </constraints>
                     </view>
                     <connections>

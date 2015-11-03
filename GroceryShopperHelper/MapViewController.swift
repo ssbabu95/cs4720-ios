@@ -19,13 +19,17 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let initialLocation = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        let region = MKCoordinateRegionMakeWithDistance(
-            initialLocation, 2000, 2000)
-        
-        mapView.setRegion(region, animated: true)
+        let initialLocation = CLLocation(latitude: lat, longitude: lon)
+        centerMapOnLocation(initialLocation)
         performSearch()
 
+    }
+    
+    let regionRadius: CLLocationDistance = 1000
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+            regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
     
     
