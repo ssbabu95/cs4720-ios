@@ -19,7 +19,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     
     @IBOutlet weak var nameText: UITextField!
     
-    @IBOutlet weak var showName: UILabel!
+  //  @IBOutlet weak var showName: UILabel!
 
     @IBOutlet weak var createButton: UIButton!
     
@@ -56,7 +56,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
             print("Location services are not enabled")
         }
 
-        self.showName.text = "";
+  //      self.showName.text = "";
         createButton.titleLabel?.adjustsFontSizeToFitWidth = true;
         shareButton.titleLabel?.adjustsFontSizeToFitWidth = true;
         promptTitle.adjustsFontSizeToFitWidth = true
@@ -133,15 +133,15 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     
     
     @IBAction func changeName(sender : AnyObject) {
-        showName.text = "Grocery list for " + nameText.text! + " will be created.";
-        showName.adjustsFontSizeToFitWidth = true;
+ //       showName.text = "Grocery list for " + nameText.text! + " will be created.";
+  //      showName.adjustsFontSizeToFitWidth = true;
         
     }
     
     @IBAction func shareAction(sender: AnyObject) {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
-        mailComposerVC.setSubject(showName.text!)
+  //      mailComposerVC.setSubject(showName.text!)
         mailComposerVC.setMessageBody("List will be here!", isHTML: false)
         if MFMailComposeViewController.canSendMail() {
             self.presentViewController(mailComposerVC, animated: true, completion: nil)
