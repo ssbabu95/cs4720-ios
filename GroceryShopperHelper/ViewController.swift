@@ -16,8 +16,11 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     var locationManager: CLLocationManager?
     var lat: Double?
     var lon: Double?
+    var grocs: Dictionary<String, [String]> = ["test":["item1", "item2"], "test2":["item3", "item4"]]
     
     @IBOutlet weak var nameText: UITextField!
+    
+    @IBOutlet weak var table: UITableView!
     
     @IBOutlet weak var scrollView: UIScrollView!
 
@@ -56,7 +59,6 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
         } else {
             print("Location services are not enabled")
         }
-
         createButton.titleLabel?.adjustsFontSizeToFitWidth = true;
         shareButton.titleLabel?.adjustsFontSizeToFitWidth = true;
         promptTitle.adjustsFontSizeToFitWidth = true
@@ -66,6 +68,19 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
 
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let path = NSTemporaryDirectory() + "MyFile.txt"
+        grocs = NSDictionary(contentsOfFile: path) as! Dictionary
+        table.reloadData()
+    }
+    
+    @IBAction func createEntry(sender: AnyObject) {
+        if(nameText.text != "") {
+            grocs[nameText.text!] = []
+            save()
+        }
+        
+    }
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if locations.count == 0{
@@ -164,7 +179,43 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
                 
             }
         }
+        if (segue.identifier == "addSeg") {
+            if let svc = segue.destinationViewController as? GrocListViewController {
+                svc.storeName = nameText.text!
+            }
+        }
     }
-
+    
+    func save() {
+        let path = NSTemporaryDirectory() + "MyFile.txt"
+        if (NSDictionary(dictionary: grocs)).writeToFile(path, atomically: true) {
+            let readArray:NSDictionary? = NSDictionary(contentsOfFile: path)
+            if let array = readArray {
+                print("Could read the array back = \(array)")
+            }
+            else {
+                print("Failed to read the array back")
+            }
+        }
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+            // 1
+            return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+                // 2
+                return (Array(grocs.keys)).count
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // 3
+        let cell = tableView.dequeueReusableCellWithIdentifier("groCell", forIndexPath: indexPath)
+        
+        cell.textLabel!.text = (Array(grocs.keys))[indexPath.row]
+        return cell
+    }
 }
 

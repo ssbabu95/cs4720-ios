@@ -9,13 +9,15 @@
 import UIKit
 
 class GrocListViewController: UITableViewController {
-
-    var groclist = [String]()
+    
+    var storeName: String = ""
+    var oldList: Dictionary<String, [String]> = ["":[""]]
     var newGroc: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groclist = ["Pre", "Populated", "List"]
+        let path = NSTemporaryDirectory() + "MyFile.txt"
+        oldList = NSDictionary(contentsOfFile: path) as! Dictionary
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -23,9 +25,8 @@ class GrocListViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillDisappear(animated: Bool) {
+        save()
     }
     
     
@@ -36,7 +37,7 @@ class GrocListViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 2
-        return groclist.count
+        return oldList[storeName]!.count
     }
     
     
@@ -44,7 +45,7 @@ class GrocListViewController: UITableViewController {
         // 3
         let cell = tableView.dequeueReusableCellWithIdentifier("grocCell", forIndexPath: indexPath)
         
-        cell.textLabel!.text = groclist[indexPath.row]
+        cell.textLabel!.text = (oldList[storeName]!)[indexPath.row]
         return cell
     }
     
@@ -56,9 +57,22 @@ class GrocListViewController: UITableViewController {
         let grocDetailVC = segue.sourceViewController as! GrocDetailViewController
         newGroc = grocDetailVC.name
         
-        groclist.append(newGroc)
+        (oldList[storeName]!).append(newGroc)
         
         self.tableView.reloadData()
+    }
+    
+    func save() {
+        let path = NSTemporaryDirectory() + "MyFile.txt"
+        if (NSDictionary(dictionary: oldList)).writeToFile(path, atomically: true) {
+            let readArray:NSDictionary? = NSDictionary(contentsOfFile: path)
+            if let array = readArray {
+                print("Could read the array back = \(array)")
+            }
+                else {
+                print("Failed to read the array back")
+            }
+        }
     }
 
 }

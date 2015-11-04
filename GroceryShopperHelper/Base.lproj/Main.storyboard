@@ -57,12 +57,27 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lSJ-VJ-Z0C">
                                         <rect key="frame" x="160" y="236" width="280" height="248"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="groCell" id="rH3-wg-fK7">
+                                                <rect key="frame" x="0.0" y="28" width="280" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rH3-wg-fK7" id="037-JV-2OI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="iuE-1S-o8R"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="OdR-ov-VfL"/>
+                                        </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="a8M-fU-1j5">
                                         <rect key="frame" x="252" y="159" width="97" height="30"/>
                                         <state key="normal" title="Create a List"/>
                                         <connections>
-                                            <segue destination="8kA-hD-JGs" kind="show" id="cZ6-2b-rmw"/>
+                                            <action selector="createEntry:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DXb-vj-Zls"/>
+                                            <segue destination="8kA-hD-JGs" kind="show" identifier="addSeg" id="cZ6-2b-rmw"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Enter grocery store's name!" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5QM-d7-ms2">
@@ -104,6 +119,7 @@
                         <outlet property="promptTitle" destination="5QM-d7-ms2" id="RU3-X3-ca2"/>
                         <outlet property="scrollView" destination="dQS-HQ-IZ8" id="xPB-ef-BVu"/>
                         <outlet property="shareButton" destination="cDA-3W-q7d" id="gpR-uR-3YJ"/>
+                        <outlet property="table" destination="lSJ-VJ-Z0C" id="qkw-MT-2k5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
