@@ -16,6 +16,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     var locationManager: CLLocationManager?
     var lat: Double?
     var lon: Double?
+    var valueToPass: String!
     var grocs: Dictionary<String, [String]> = ["test":["item1", "item2"], "test2":["item3", "item4"]]
     
     @IBOutlet weak var nameText: UITextField!
@@ -61,8 +62,8 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
         }
         createButton.titleLabel?.adjustsFontSizeToFitWidth = true;
         shareButton.titleLabel?.adjustsFontSizeToFitWidth = true;
-        promptTitle.adjustsFontSizeToFitWidth = true
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
 
@@ -77,6 +78,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     @IBAction func createEntry(sender: AnyObject) {
         if(nameText.text != "") {
             grocs[nameText.text!] = []
+            valueToPass = nameText.text!
             save()
         }
         
@@ -148,13 +150,27 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     
     
     @IBAction func shareAction(sender: AnyObject) {
+        
+        let path = NSTemporaryDirectory() + "MyFile.txt"
+        let readArray:Dictionary = NSDictionary(contentsOfFile: path) as Dictionary!
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
-        mailComposerVC.setMessageBody("List will be here!", isHTML: false)
-        if MFMailComposeViewController.canSendMail() {
-            self.presentViewController(mailComposerVC, animated: true, completion: nil)
-        } else {
-            self.showSendMailErrorAlert()
+        if (nameText.text! == "" || !Array(readArray.keys).contains(nameText.text!)) {
+            let refreshAlert = UIAlertController(title: "Invalid List", message: "Please enter a valid list into the text box", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                print("Handle Ok logic here")
+            }))
+            presentViewController(refreshAlert, animated: true, completion: nil)
+        }
+        else{
+            mailComposerVC.setSubject(nameText.text!)
+            mailComposerVC.setMessageBody(String(readArray[nameText.text!]), isHTML: false)
+            if MFMailComposeViewController.canSendMail() {
+                self.presentViewController(mailComposerVC, animated: true, completion: nil)
+            } else {
+                self.showSendMailErrorAlert()
+            }
         }
     }
     
@@ -181,8 +197,9 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
         }
         if (segue.identifier == "addSeg") {
             if let svc = segue.destinationViewController as? GrocListViewController {
-                svc.storeName = nameText.text!
+                svc.storeName = valueToPass
             }
+
         }
     }
     
@@ -200,13 +217,13 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-            // 1
-            return 1
+        // 1
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                // 2
-                return (Array(grocs.keys)).count
+        // 2
+        return (Array(grocs.keys)).count
     }
     
     
@@ -216,6 +233,18 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
         
         cell.textLabel!.text = (Array(grocs.keys))[indexPath.row]
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("You selected cell #\(indexPath.row)!")
+        
+        // Get Cell Label
+        let indexPath = tableView.indexPathForSelectedRow;
+        let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!;
+        valueToPass = currentCell.textLabel!.text
+        
+        performSegueWithIdentifier("addSeg", sender: self)
+        
     }
 }
 
