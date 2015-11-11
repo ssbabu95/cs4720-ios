@@ -14,8 +14,10 @@ class GrocDetailViewController: UIViewController {
     
     @IBOutlet weak var grocName: UITextField!
     
+    @IBOutlet weak var sV: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        sV.contentSize.height = 600
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)

@@ -17,7 +17,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     var lat: Double?
     var lon: Double?
     var valueToPass: String!
-    var grocs: Dictionary<String, [String]> = ["test":["item1", "item2"], "test2":["item3", "item4"]]
+    var grocs: Dictionary<String, [String]> = [String:[String]]()
     
     @IBOutlet weak var nameText: UITextField!
     
@@ -36,6 +36,10 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
         // Do any additional setup after loading the view, typically from a nib.
         scrollView.contentSize.height = 600
         
+        let manager = NSFileManager.defaultManager()
+        let path = NSTemporaryDirectory() + "MyFile.txt"
+        if (manager.fileExistsAtPath(path)) {
+        
         if CLLocationManager.locationServicesEnabled(){
             
             switch CLLocationManager.authorizationStatus(){
@@ -47,9 +51,9 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
                 displayAlertWithTitle("Not Determined",
                     message: "Location services are not allowed for this app")
             case .NotDetermined:
-                createLocationManager(startImmediately: false)
-                if let manager = self.locationManager{
-                    manager.requestWhenInUseAuthorization()
+                createLocationManager(startImmediately: true)
+                if let manager = self.locationManager {
+                    manager.requestAlwaysAuthorization()
                 }
             case .Restricted:
                 displayAlertWithTitle("Restricted",
@@ -65,6 +69,40 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        }
+        else {
+            try (NSDictionary(dictionary: grocs)).writeToFile(path, atomically: true)
+            
+            if CLLocationManager.locationServicesEnabled(){
+                
+                switch CLLocationManager.authorizationStatus(){
+                case .AuthorizedAlways:
+                    createLocationManager(startImmediately: true)
+                case .AuthorizedWhenInUse:
+                    createLocationManager(startImmediately: true)
+                case .Denied:
+                    displayAlertWithTitle("Not Determined",
+                        message: "Location services are not allowed for this app")
+                case .NotDetermined:
+                    createLocationManager(startImmediately: true)
+                    if let manager = self.locationManager {
+                        manager.requestAlwaysAuthorization()
+                    }
+                case .Restricted:
+                    displayAlertWithTitle("Restricted",
+                        message: "Location services are not allowed for this app")
+                }
+                
+                
+            } else {
+                print("Location services are not enabled")
+            }
+            createButton.titleLabel?.adjustsFontSizeToFitWidth = true;
+            shareButton.titleLabel?.adjustsFontSizeToFitWidth = true;
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+            tap.cancelsTouchesInView = false
+            view.addGestureRecognizer(tap)
+        }
         
 
     }

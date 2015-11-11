@@ -199,40 +199,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxf-PJ-HBp">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Add Item" id="Fzf-JC-zQF">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xPC-sD-ST0">
-                                            <connections>
-                                                <segue destination="L5H-HO-bh2" kind="unwind" identifier="cancelSegue" unwindAction="cancel:" id="lJQ-Vl-3hD"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="CTq-RP-Z9F">
-                                            <connections>
-                                                <segue destination="L5H-HO-bh2" kind="unwind" identifier="doneSegue" unwindAction="done:" id="PJ8-IU-D5F"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KK9-IC-bte">
-                                <rect key="frame" x="20" y="269" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Om-Li-y4F">
+                                <rect key="frame" x="0.0" y="44" width="600" height="600"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KK9-IC-bte">
+                                        <rect key="frame" x="20" y="217" width="560" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxf-PJ-HBp">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <items>
+                                            <navigationItem title="Add Item" id="Fzf-JC-zQF">
+                                                <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xPC-sD-ST0">
+                                                    <connections>
+                                                        <segue destination="L5H-HO-bh2" kind="unwind" identifier="cancelSegue" unwindAction="cancel:" id="lJQ-Vl-3hD"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" systemItem="done" id="CTq-RP-Z9F">
+                                                    <connections>
+                                                        <segue destination="L5H-HO-bh2" kind="unwind" identifier="doneSegue" unwindAction="done:" id="PJ8-IU-D5F"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </navigationItem>
+                                        </items>
+                                    </navigationBar>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="mxf-PJ-HBp" firstAttribute="centerX" secondItem="7Om-Li-y4F" secondAttribute="centerX" id="OtS-9h-tw6"/>
+                                    <constraint firstItem="mxf-PJ-HBp" firstAttribute="width" secondItem="7Om-Li-y4F" secondAttribute="width" id="Z5G-jb-kAO"/>
+                                    <constraint firstItem="KK9-IC-bte" firstAttribute="width" secondItem="7Om-Li-y4F" secondAttribute="width" id="lFL-7I-eoT"/>
+                                    <constraint firstItem="KK9-IC-bte" firstAttribute="centerX" secondItem="7Om-Li-y4F" secondAttribute="centerX" id="lNT-Te-43C"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KK9-IC-bte" firstAttribute="width" secondItem="ZtY-aI-VrI" secondAttribute="width" id="Eyc-Fx-K3i"/>
-                            <constraint firstItem="KK9-IC-bte" firstAttribute="centerX" secondItem="ZtY-aI-VrI" secondAttribute="centerX" id="Imb-ZR-Ag5"/>
-                            <constraint firstItem="mxf-PJ-HBp" firstAttribute="width" secondItem="ZtY-aI-VrI" secondAttribute="width" id="MJF-Yk-XtO"/>
-                            <constraint firstItem="mxf-PJ-HBp" firstAttribute="centerX" secondItem="ZtY-aI-VrI" secondAttribute="centerX" id="lJv-EE-zS7"/>
-                            <constraint firstItem="KK9-IC-bte" firstAttribute="centerY" secondItem="ZtY-aI-VrI" secondAttribute="centerY" id="xwa-i3-TLo"/>
+                            <constraint firstItem="7Om-Li-y4F" firstAttribute="centerX" secondItem="ZtY-aI-VrI" secondAttribute="centerX" id="BR3-G4-mo5"/>
+                            <constraint firstItem="7Om-Li-y4F" firstAttribute="width" secondItem="ZtY-aI-VrI" secondAttribute="width" id="Te3-ye-eJD"/>
+                            <constraint firstItem="7Om-Li-y4F" firstAttribute="height" secondItem="ZtY-aI-VrI" secondAttribute="height" id="aZO-gY-EtD"/>
+                            <constraint firstItem="7Om-Li-y4F" firstAttribute="centerY" secondItem="ZtY-aI-VrI" secondAttribute="centerY" id="rVd-pL-jG6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="grocName" destination="KK9-IC-bte" id="Mbq-Cn-eo6"/>
+                        <outlet property="sV" destination="7Om-Li-y4F" id="mdm-GQ-vSR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ux5-Yg-QOJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
