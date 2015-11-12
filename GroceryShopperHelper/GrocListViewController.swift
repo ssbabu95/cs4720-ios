@@ -7,7 +7,15 @@
 //
 
 import UIKit
-
+extension RangeReplaceableCollectionType where Generator.Element : Equatable {
+    
+    // Remove first collection element that is equal to the given `object`:
+    mutating func removeObject(object : Generator.Element) {
+        if let index = self.indexOf(object) {
+            self.removeAtIndex(index)
+        }
+    }
+}
 class GrocListViewController: UITableViewController {
     
     var storeName: String = ""
@@ -48,6 +56,18 @@ class GrocListViewController: UITableViewController {
         cell.textLabel!.text = (oldList[storeName]!)[indexPath.row]
         return cell
     }
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let selCell = tableView.cellForRowAtIndexPath(indexPath)
+            let selCellS = selCell?.textLabel?.text
+            var intArr = oldList[storeName]
+            intArr?.removeObject(selCellS!)
+            oldList[storeName] = intArr
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+    
+
     
     
     @IBAction func cancel(segue:UIStoryboardSegue) {

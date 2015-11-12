@@ -284,5 +284,14 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
         performSegueWithIdentifier("addSeg", sender: self)
         
     }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let selCell = tableView.cellForRowAtIndexPath(indexPath)
+            let selCellS = selCell?.textLabel?.text
+            grocs.removeValueForKey(selCellS!)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
 }
 
