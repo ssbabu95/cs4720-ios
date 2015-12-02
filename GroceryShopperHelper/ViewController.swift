@@ -11,6 +11,9 @@ import MessageUI
 import AVFoundation
 import CoreLocation
 
+var player = AVAudioPlayer()
+var set = false
+
 class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager?
@@ -18,6 +21,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     var lon: Double?
     var valueToPass: String!
     var grocs: Dictionary<String, [String]> = [String:[String]]()
+    var ids = [3068, 16553, 690, 34889, 32478, 29159, 6868 , 4922, 29262, 13464, 25630, 29037, 11264, 29265, 13856, 12926, 17038, 15368, 11496, 33552, 7981, 2715, 8675, 2406, 1340, 12239, 2425, 16373, 11064, 13271, 11114, 15463, 8105, 14726, 15449, 11065, 15089, 1349, 28789, 32735, 4151, 5484, 2402, 2307, 7211, 9183, 5153, 5104, 16029, 23991, 12323, 8170, 13498, 4052, 13314]
     
     @IBOutlet weak var nameText: UITextField!
     
@@ -35,7 +39,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         scrollView.contentSize.height = 600
-        
+        set = setPlay()
         let manager = NSFileManager.defaultManager()
         let path = NSTemporaryDirectory() + "MyFile.txt"
         if (manager.fileExistsAtPath(path)) {
@@ -48,7 +52,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
             case .AuthorizedWhenInUse:
                 createLocationManager(startImmediately: true)
             case .Denied:
-                displayAlertWithTitle("Not Determined",
+                displayAlertWithTitle("No Location Services",
                     message: "Location services are not allowed for this app")
             case .NotDetermined:
                 createLocationManager(startImmediately: true)
@@ -56,7 +60,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
                     manager.requestAlwaysAuthorization()
                 }
             case .Restricted:
-                displayAlertWithTitle("Restricted",
+                displayAlertWithTitle("No Location Services",
                     message: "Location services are not allowed for this app")
             }
             
@@ -81,7 +85,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
                 case .AuthorizedWhenInUse:
                     createLocationManager(startImmediately: true)
                 case .Denied:
-                    displayAlertWithTitle("Not Determined",
+                    displayAlertWithTitle("No Location Services",
                         message: "Location services are not allowed for this app")
                 case .NotDetermined:
                     createLocationManager(startImmediately: true)
@@ -89,7 +93,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
                         manager.requestAlwaysAuthorization()
                     }
                 case .Restricted:
-                    displayAlertWithTitle("Restricted",
+                    displayAlertWithTitle("No Location Services",
                         message: "Location services are not allowed for this app")
                 }
                 
@@ -107,20 +111,55 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
 
     }
     
+    func setPlay() -> Bool{
+        let path = NSBundle.mainBundle().pathForResource("Jazzy Elevator Music", ofType: "mp3")
+        if(path != nil){
+            let url = NSURL.fileURLWithPath(path!)
+            do{
+                player = try AVAudioPlayer(contentsOfURL: url)
+                player.numberOfLoops = -1
+                player.prepareToPlay()
+                player.play()
+                return true
+            }
+            catch let error as NSError {
+                print(error.description)
+            }
+        }
+        return false
+    }
+    
     override func viewWillAppear(animated: Bool) {
         let path = NSTemporaryDirectory() + "MyFile.txt"
         grocs = NSDictionary(contentsOfFile: path) as! Dictionary
         table.reloadData()
+        //print(grocs)
     }
     
     @IBAction func createEntry(sender: AnyObject) {
-        if(nameText.text != "") {
+        if(!(nameText.text!.isEmpty)) {
             grocs[nameText.text!] = []
             valueToPass = nameText.text!
             save()
         }
+        else{
+            valueToPass = ""
+            let alert = UIAlertController(title: "List Name is Blank",
+                message: "Please enter a name for your list.",
+                preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK",
+                style: .Default,
+                handler: { (action: UIAlertAction!) in
+                    print("Please don't crash...")
+            }))
+            
+            presentViewController(alert, animated: true, completion: nil)
+        
+        }
         
     }
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if locations.count == 0{
@@ -153,6 +192,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
             case .AuthorizedWhenInUse:
                 print("Authorized when in use")
             case .Denied:
+                locationManager = nil
                 print("Denied")
             case .NotDetermined:
                 print("Not determined")
@@ -190,7 +230,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     @IBAction func shareAction(sender: AnyObject) {
         
         let path = NSTemporaryDirectory() + "MyFile.txt"
-        let readArray:Dictionary = NSDictionary(contentsOfFile: path) as Dictionary!
+        let readArray:Dictionary<String, [String]> = NSDictionary(contentsOfFile: path) as! Dictionary!
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
         if (nameText.text! == "" || !Array(readArray.keys).contains(nameText.text!)) {
@@ -203,7 +243,19 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
         }
         else{
             mailComposerVC.setSubject(nameText.text!)
-            mailComposerVC.setMessageBody(String(readArray[nameText.text!]), isHTML: false)
+            let items:[AnyObject] = [AnyObject](arrayLiteral: readArray[nameText.text!]!)
+            var body = ""
+            for item in items{
+                var str = String(item)
+                str = str.stringByReplacingOccurrencesOfString("\"", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                str = str.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                str = str.stringByReplacingOccurrencesOfString("(", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                str = str.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                if(!str.isEmpty){
+                    body += str+"\n"
+                }
+            }
+            mailComposerVC.setMessageBody(body, isHTML: false)
             if MFMailComposeViewController.canSendMail() {
                 self.presentViewController(mailComposerVC, animated: true, completion: nil)
             } else {
@@ -226,14 +278,31 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if (segue.identifier == "mapSeg") {
+        if (segue.identifier == "soundSeg"){
+            if (set){
+                player.stop()
+            }
+        }
+        if (segue.identifier == "mapSeg" && locationManager != nil) {
             if let svc = segue.destinationViewController as? MapViewController {
                 svc.lat = lat
                 svc.lon = lon
                 
             }
         }
-        if (segue.identifier == "addSeg") {
+        if (segue.identifier == "mapSeg" && locationManager == nil){
+            let alert = UIAlertController(title: "Location Services not Enabled",
+                message: "Location services aren't enabled for this app. Please enable them in Settings.",
+                preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK",
+                style: .Default,
+                handler: { (action: UIAlertAction!) in
+                    print("Please don't crash...")
+            }))
+            
+            presentViewController(alert, animated: true, completion: nil)        }
+        if (segue.identifier == "addSeg" && !valueToPass.isEmpty) {
             if let svc = segue.destinationViewController as? GrocListViewController {
                 svc.storeName = valueToPass
             }
@@ -290,8 +359,63 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate, CLL
             let selCell = tableView.cellForRowAtIndexPath(indexPath)
             let selCellS = selCell?.textLabel?.text
             grocs.removeValueForKey(selCellS!)
+            save()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
+    }
+    
+    @IBAction func generateRecipe(sender: AnyObject) {
+        // Get first post
+        let randomIndex = Int(arc4random_uniform(UInt32(ids.count)))
+        let postEndpoint: String = "http://food2fork.com/api/get?key=ed4df78c74113a90f9999afb913ebe04&rId=\(ids[randomIndex])"
+        guard let url = NSURL(string: postEndpoint) else {
+            print("Error: cannot create URL")
+            return
+        }
+        let urlRequest = NSURLRequest(URL: url)
+        
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
+        
+        let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return
+            }
+            guard error == nil else {
+                print("error calling GET on /posts/1")
+                print(error)
+                return
+            }
+            // parse the result as JSON, since that's what the API provides
+            let post: NSDictionary
+            do {
+                post = try NSJSONSerialization.JSONObjectWithData(responseData,
+                    options: []) as! NSDictionary
+                let plc: NSDictionary = post["recipe"] as! NSDictionary
+                let titl = plc["title"] as! String
+                let ingr = plc["ingredients"] as! [String]
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.grocs[titl] = ingr
+                    self.save()
+                    self.table.reloadData()
+                    print(self.grocs)
+                })
+            } catch  {
+                print("error trying to convert data to JSON")
+                return
+            }
+            // now we have the post, let's just print it to prove we can access it
+            //print("The post is: " + post.description)
+            
+            // the post object is a dictionary
+            // so we just access the title using the "title" key
+            // so check for a title and print it if we have one
+            if let postTitle = post["title"] as? String {
+                print("The title is: " + postTitle)
+            }
+        })
+        task.resume()
     }
 }
 

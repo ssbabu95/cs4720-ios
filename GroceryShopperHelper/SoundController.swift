@@ -15,24 +15,65 @@ class SoundController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     var soundRecorder: AVAudioRecorder!
     var soundPlayer: AVAudioPlayer!
     let filename = "glist.caf"
+    var sess = AVAudioSession()
     
     @IBOutlet weak var recordButton: UIButton!
    
     @IBOutlet weak var playButton: UIButton!
-
+    
     @IBAction func recordSound(sender: UIButton) {
-        if (self.soundRecorder?.recording == nil) {
-            setupRecorder()
+        AVAudioSession.sharedInstance().requestRecordPermission({(granted: Bool)-> Void in
+            if granted {
+                if (self.soundRecorder?.recording == nil) {
+                    self.setupRecorder()
+                }
+                if (sender.titleLabel?.text == "Record"){
+                    self.soundRecorder!.record()
+                    sender.setTitle("Stop", forState: .Normal)
+                    self.playButton.enabled = false
+                } else {
+                    self.soundRecorder!.stop()
+                    sender.setTitle("Record", forState: .Normal)
+                    self.playButton.enabled = true
+                }
+            } else {
+                let alert = UIAlertController(title: "Recording not Enabled",
+                    message: "Recording isn't enabled for this app. Please enable it in Settings.",
+                    preferredStyle: .Alert)
+                
+                alert.addAction(UIAlertAction(title: "OK",
+                    style: .Default,
+                    handler: { (action: UIAlertAction!) in
+                        print("Please don't crash...")
+            }))
+                self.presentViewController(alert, animated: true, completion: nil) }
+        })
+      /*  if(sess.recordPermission() == AVAudioSessionRecordPermission.Granted){
+            if (self.soundRecorder?.recording == nil) {
+                setupRecorder()
+            }
+            if (sender.titleLabel?.text == "Record"){
+                soundRecorder!.record()
+                sender.setTitle("Stop", forState: .Normal)
+                playButton.enabled = false
+            } else {
+                soundRecorder!.stop()
+                sender.setTitle("Record", forState: .Normal)
+                playButton.enabled = true
+            }
         }
-        if (sender.titleLabel?.text == "Record"){
-            soundRecorder!.record()
-            sender.setTitle("Stop", forState: .Normal)
-            playButton.enabled = false
-        } else {
-            soundRecorder!.stop()
-            sender.setTitle("Record", forState: .Normal)
-            playButton.enabled = true
-        }
+        else{
+            let alert = UIAlertController(title: "Recording not Enabled",
+                message: "Recording isn't enabled for this app. Please enable it in Settings.",
+                preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK",
+                style: .Default,
+                handler: { (action: UIAlertAction!) in
+                    print("Please don't crash...")
+            }))
+            
+            presentViewController(alert, animated: true, completion: nil)          } */
     }
     @IBAction func playSound(sender: UIButton) {
       //  if (self.soundPlayer?.playing == nil) {
@@ -56,7 +97,7 @@ class SoundController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
         return paths[0]
     }
     
-    func getFileURL() -> NSURL {
+    func getFileURL() -> NSURL? {
         
         let path = getCacheDirectory().stringByAppendingString(filename)
         let filePath = NSURL(fileURLWithPath: path)
@@ -67,6 +108,16 @@ class SoundController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
         return filePath
     }
     
+    override func viewWillDisappear(animated : Bool) {
+        super.viewWillDisappear(animated)
+        
+        if (self.isMovingFromParentViewController()){
+            if(set){
+                player.prepareToPlay()
+                player.play()
+            }
+        }
+    }
     func setupRecorder() {
         
         let recordSettings : [String : AnyObject] =
@@ -85,7 +136,7 @@ class SoundController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             //try session.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
             try session.setActive(true)
         
-            soundRecorder =  try AVAudioRecorder(URL: getFileURL(), settings: recordSettings)
+            soundRecorder =  try AVAudioRecorder(URL: getFileURL()!, settings: recordSettings)
             soundRecorder.delegate = self
             soundRecorder.prepareToRecord()
         
@@ -98,15 +149,17 @@ class SoundController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
         }
     
     func preparePlayer() {
-        do {
-            soundPlayer = try AVAudioPlayer(contentsOfURL: getFileURL())
-            soundPlayer.delegate = self
-            soundPlayer.prepareToPlay()
-            soundPlayer.volume = 1.0
-        }
-        catch let error as NSError
-        {
-            print(error.description)
+        if(getFileURL() != nil){
+            do {
+                soundPlayer = try AVAudioPlayer(contentsOfURL: getFileURL()!)
+                soundPlayer.delegate = self
+                soundPlayer.prepareToPlay()
+                soundPlayer.volume = 1.0
+            }
+            catch let error as NSError
+            {
+                print(error.description)
+            }
         }
     }
     

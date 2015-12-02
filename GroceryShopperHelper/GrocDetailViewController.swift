@@ -32,10 +32,25 @@ class GrocDetailViewController: UIViewController {
     
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "doneSegue" {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if (identifier == "doneSegue" && !grocName.text!.isEmpty){
             name = grocName.text!
+            return true;
         }
+        else if (identifier == "doneSegue"){
+            let alert = UIAlertController(title: "Item is Blank",
+                message: "Please enter an item to add.",
+                preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK",
+                style: .Default,
+                handler: { (action: UIAlertAction!) in
+                    print("Please don't crash...")
+            }))
+            presentViewController(alert, animated: true, completion: nil)
+            return false
+        }
+        return true;
     }
     
     func DismissKeyboard(){

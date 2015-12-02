@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0708FB9E1BE6ECE5007F4E8C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0708FB9D1BE6ECE5007F4E8C /* MapViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		0779260E1BDFEEC5006610EC /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779260D1BDFEEC5006610EC /* SoundController.swift */; settings = {ASSET_TAGS = (); }; };
-		07805A131BE17672008441D0 /* GrocDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07805A121BE17672008441D0 /* GrocDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		07805A151BE176AD008441D0 /* GrocListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07805A141BE176AD008441D0 /* GrocListViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		0708FB9E1BE6ECE5007F4E8C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0708FB9D1BE6ECE5007F4E8C /* MapViewController.swift */; };
+		0779260E1BDFEEC5006610EC /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779260D1BDFEEC5006610EC /* SoundController.swift */; };
+		07805A131BE17672008441D0 /* GrocDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07805A121BE17672008441D0 /* GrocDetailViewController.swift */; };
+		07805A151BE176AD008441D0 /* GrocListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07805A141BE176AD008441D0 /* GrocListViewController.swift */; };
 		07F9F37E1BD29F0F00D7D177 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9F37D1BD29F0F00D7D177 /* AppDelegate.swift */; };
 		07F9F3801BD29F0F00D7D177 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9F37F1BD29F0F00D7D177 /* ViewController.swift */; };
 		07F9F3831BD29F0F00D7D177 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F9F3811BD29F0F00D7D177 /* Main.storyboard */; };
 		07F9F3851BD29F0F00D7D177 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07F9F3841BD29F0F00D7D177 /* Assets.xcassets */; };
 		07F9F3881BD29F0F00D7D177 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F9F3861BD29F0F00D7D177 /* LaunchScreen.storyboard */; };
+		8401CD6B1BF922D0008F18A9 /* Jazzy Elevator Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8401CD6A1BF922D0008F18A9 /* Jazzy Elevator Music.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		07F9F3841BD29F0F00D7D177 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07F9F3871BD29F0F00D7D177 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07F9F3891BD29F0F00D7D177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8401CD6A1BF922D0008F18A9 /* Jazzy Elevator Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jazzy Elevator Music.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		07F9F37C1BD29F0F00D7D177 /* GroceryShopperHelper */ = {
 			isa = PBXGroup;
 			children = (
+				8401CD6A1BF922D0008F18A9 /* Jazzy Elevator Music.mp3 */,
 				07F9F37D1BD29F0F00D7D177 /* AppDelegate.swift */,
 				07F9F37F1BD29F0F00D7D177 /* ViewController.swift */,
 				07F9F3811BD29F0F00D7D177 /* Main.storyboard */,
@@ -135,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F9F3881BD29F0F00D7D177 /* LaunchScreen.storyboard in Resources */,
+				8401CD6B1BF922D0008F18A9 /* Jazzy Elevator Music.mp3 in Resources */,
 				07F9F3851BD29F0F00D7D177 /* Assets.xcassets in Resources */,
 				07F9F3831BD29F0F00D7D177 /* Main.storyboard in Resources */,
 			);
@@ -268,10 +272,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GroceryShopperHelper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cs4720.GroceryShopperHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -282,10 +288,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GroceryShopperHelper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cs4720.GroceryShopperHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

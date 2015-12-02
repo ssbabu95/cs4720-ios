@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CA7-es-PIM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CA7-es-PIM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <deployment version="2320" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -32,10 +33,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQS-HQ-IZ8">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQS-HQ-IZ8">
+                                <rect key="frame" x="0.0" y="-30" width="600" height="600"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LIh-OF-VhV">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter list to mail or create" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LIh-OF-VhV">
                                         <rect key="frame" x="159" y="78" width="280" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -63,7 +64,7 @@
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lSJ-VJ-Z0C">
-                                        <rect key="frame" x="141" y="159" width="316" height="341"/>
+                                        <rect key="frame" x="141" y="154" width="316" height="341"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="groCell" id="rH3-wg-fK7">
@@ -100,9 +101,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Grocery Shopper" id="zg0-IB-8j2">
+                        <barButtonItem key="leftBarButtonItem" title="Recipe" id="MkE-19-jYH">
+                            <connections>
+                                <action selector="generateRecipe:" destination="BYZ-38-t0r" id="kxy-Zn-WOQ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Audio" id="8os-2T-AXh">
                             <connections>
-                                <segue destination="sI4-jP-rkA" kind="show" id="uxX-lt-IUB"/>
+                                <segue destination="sI4-jP-rkA" kind="show" identifier="soundSeg" id="uxX-lt-IUB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -178,7 +184,7 @@
                     <navigationItem key="navigationItem" title="Grocery List" id="Tvf-Ry-WJY">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ReQ-tw-py7">
                             <connections>
-                                <segue destination="b7v-zk-Bqo" kind="presentation" id="Ba2-0t-1r8"/>
+                                <action selector="add" destination="8kA-hD-JGs" id="7dQ-jd-9aE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

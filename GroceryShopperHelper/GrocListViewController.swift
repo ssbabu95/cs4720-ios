@@ -21,6 +21,7 @@ class GrocListViewController: UITableViewController {
     var storeName: String = ""
     var oldList: Dictionary<String, [String]> = ["":[""]]
     var newGroc: String = ""
+    var tF: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,11 +78,40 @@ class GrocListViewController: UITableViewController {
     @IBAction func done(segue:UIStoryboardSegue) {
         let grocDetailVC = segue.sourceViewController as! GrocDetailViewController
         newGroc = grocDetailVC.name
-        
-        (oldList[storeName]!).append(newGroc)
+        if(!newGroc.isEmpty){
+            (oldList[storeName]!).append(newGroc)
+        }
         
         self.tableView.reloadData()
     }
+    
+    func configTF(textField: UITextField!){
+        tF = textField
+    }
+    
+    @IBAction func add(){
+        let alert = UIAlertController(title: "Add Item",
+            message: "",
+            preferredStyle: .Alert)
+        alert.addTextFieldWithConfigurationHandler(configTF)
+        alert.addAction(UIAlertAction(title: "Done",
+            style: .Default,
+            handler: { (action: UIAlertAction!) in
+                if(!self.tF.text!.isEmpty){
+                    self.newGroc = self.tF.text!
+                    (self.oldList[self.storeName]!).append(self.newGroc)
+                    self.tableView.reloadData()
+                }
+                else{
+                    let fail = UIAlertController(title: "Blank item", message: "Please enter an item to add.", preferredStyle: .Alert)
+                    fail.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: {(action: UIAlertAction!) in
+                        print("pls pls no die")}))
+                    self.presentViewController(fail, animated: true, completion: nil)
+                }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {(action: UIAlertAction!) in
+            print("pls no die")}))
+        presentViewController(alert, animated: true, completion: nil)    }
     
     func save() {
         let path = NSTemporaryDirectory() + "MyFile.txt"
